@@ -221,6 +221,26 @@ static LONG CALLBACK veh_handler(PEXCEPTION_POINTERS ep)
             }
         }
 
+        /* USB host controllers -> the emulated OHCI model.
+         *
+         * xbox_OhciInit() arms both register blocks (0xFED00000, 0xFED08000)
+         * PAGE_NOACCESS so the title's own XInput, which is statically linked
+         * and talks to the hardware directly, has to fault to be answered.
+         * Without this branch every one of those faults was declined and
+         * surfaced as a crash -- RECOMP_USB died on the first register read at
+         * 0xFED10000. */
+        {
+            uint32_t xbox_va =
+                (uint32_t)(fault_addr - (uintptr_t)g_xbox_mem_offset);
+            extern int xbox_OhciOwnsAddress(uint32_t xbox_va);
+            extern int xbox_OhciHandleMmio(void *ctx, uint32_t xbox_va);
+
+            if (xbox_OhciOwnsAddress(xbox_va)
+                    && xbox_OhciHandleMmio(ep->ContextRecord, xbox_va)) {
+                return EXCEPTION_CONTINUE_EXECUTION;
+            }
+        }
+
         fprintf(stderr, "[CRASH] Access violation at RIP=0x%llX, fault addr=0x%llX (%s)\n",
             (unsigned long long)ep->ContextRecord->Rip,
             (unsigned long long)fault_addr,
@@ -327,14 +347,15 @@ int WINAPI WinMain(HINSTANCE hInstance, HINSTANCE hPrevInstance,
         _putenv_s("RECOMP_FB_WINDOW", "1");
     if (!getenv("RECOMP_VBLANK"))
         _putenv_s("RECOMP_VBLANK", "1");
-    /* The linked DirectSound runtime submits its DSP command block through
-     * its allocated command block and waits on the word at 0x804D0810.  The current
-     * passthrough DSP has no program to consume it, so acknowledge that
-     * observed doorbell once per APU frame. */
+    /* The linked DirectSound runtime writes DSP commands into its command
+     * block and waits for them to be cleared.  The passthrough DSP has no
+     * program to consume them; the APU acknowledges them itself, finding the
+     * block from GPSADDR.  That used to be a fixed RECOMP_APU_DSP_ACK of
+     * 0x804D0810, which covered only the boot device: New Game releases it and
+     * creates another at 0x81708000, and waited there forever.  The fixed
+     * address also kept zeroing a word of freed memory once per APU frame. */
     if (!getenv("RECOMP_AC97_READY"))
         _putenv_s("RECOMP_AC97_READY", "1");
-    if (!getenv("RECOMP_APU_DSP_ACK"))
-        _putenv_s("RECOMP_APU_DSP_ACK", "0x804D0810");
 
     /* Unbuffered output for immediate visibility during debugging */
     setvbuf(stdout, NULL, _IONBF, 0);
@@ -414,6 +435,18 @@ int WINAPI WinMain(HINSTANCE hInstance, HINSTANCE hPrevInstance,
     /* Step 5: Initialize kernel bridge (thunk table in Xbox memory) */
     printf("Initializing kernel bridge...\n");
     xbox_kernel_bridge_init();
+
+    /* Step 5b: USB host controllers (OHCI).
+     *
+     * Opt-in via RECOMP_USB -- xbox_OhciInit() returns immediately without it,
+     * because there is no descriptor-list walker behind the controller yet and
+     * a driver that finds a port has nothing to enumerate. Wired here so the
+     * path is reachable at all: without a caller the whole USB layer is dead
+     * code and the title can never see a gamepad. */
+    {
+        extern void xbox_OhciInit(void);
+        xbox_OhciInit();
+    }
 
     /* Step 6: Initialize stack */
     g_esp = XBOX_STACK_TOP;

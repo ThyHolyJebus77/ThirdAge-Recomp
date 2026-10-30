@@ -22,5 +22,237 @@
  {
   "start": "0x0023A727",
   "note": "Runtime-reached XPP USB/input initialization routine."
+ },
+ {
+  "start": "0x0023FE0A",
+  "note": "Runtime-reached XPP USB hub-port enumeration step: queued as a DPC after SET_ADDRESS, builds the next GET_DESCRIPTOR(config) request. Starts immediately after the ret 8 of 0x0023FCE4 and is reached only through a stored pointer, so the detector never sees it."
+ },
+ {
+  "start": "0x0023EAC7",
+  "note": "Runtime-reached XPP USB enumeration step for the pad, reached through a stored completion/DPC pointer after SET_CONFIGURATION; starts immediately after the ret 8 of the preceding function."
+ },
+ {
+  "start": "0x0023E062",
+  "note": "Runtime-reached XPP USB completion step, called through a stored pointer after the pad's GET_REPORT; starts immediately after the ret 8 of the preceding function."
+ },
+ {
+  "start": "0x001B2E20",
+  "note": "Runtime-reached when the opening movie (e1c1f01.vid) starts after New Game; called indirectly from 0x0017F8F0. Starts after int3 padding that follows a no-return call (0x00187A40) at the end of 0x001B1F80, so the detector ran on and merged it into that function."
+ },
+ {
+  "start": "0x001A7480",
+  "note": "Entry after int3 padding that follows a no-return call to 0x00187A40; the detector merged it into its predecessor. Referenced only from data (function table), never called directly."
+ },
+ {
+  "start": "0x001B2290",
+  "note": "Entry after int3 padding that follows a no-return call to 0x00187A40; the detector merged it into its predecessor. Referenced only from data (function table), never called directly."
+ },
+ {
+  "start": "0x001B2530",
+  "note": "Entry after int3 padding that follows a no-return call to 0x00187A40; the detector merged it into its predecessor. Referenced only from data (function table), never called directly."
+ },
+ {
+  "start": "0x001B2870",
+  "note": "Entry after int3 padding that follows a no-return call to 0x00187A40; the detector merged it into its predecessor. Referenced only from data (function table), never called directly."
+ },
+ {
+  "start": "0x001B2BB0",
+  "note": "Entry after int3 padding that follows a no-return call to 0x00187A40; the detector merged it into its predecessor. Referenced only from data (function table), never called directly."
+ },
+ {
+  "start": "0x001B3090",
+  "note": "Entry after int3 padding that follows a no-return call to 0x00187A40; the detector merged it into its predecessor. Referenced only from data (function table), never called directly."
+ },
+ {
+  "start": "0x001B3300",
+  "note": "Entry after int3 padding that follows a no-return call to 0x00187A40; the detector merged it into its predecessor. Referenced only from data (function table), never called directly."
+ },
+ {
+  "start": "0x001B3620",
+  "note": "Entry after int3 padding that follows a no-return call to 0x00187A40; the detector merged it into its predecessor. Referenced only from data (function table), never called directly."
+ },
+ {
+  "start": "0x001B3C10",
+  "note": "Entry after int3 padding that follows a no-return call to 0x00187A40; the detector merged it into its predecessor. Referenced only from data (function table), never called directly."
+ },
+ {
+  "start": "0x001B3EA0",
+  "note": "Entry after int3 padding that follows a no-return call to 0x00187A40; the detector merged it into its predecessor. Referenced only from data (function table), never called directly."
+ },
+ {
+  "start": "0x001B4540",
+  "note": "Entry after int3 padding that follows a no-return call to 0x00187A40; the detector merged it into its predecessor. Referenced only from data (function table), never called directly."
+ },
+ {
+  "start": "0x001B4800",
+  "note": "Entry after int3 padding that follows a no-return call to 0x00187A40; the detector merged it into its predecessor. Referenced only from data (function table), never called directly."
+ },
+ {
+  "start": "0x001B4AE0",
+  "note": "Entry after int3 padding that follows a no-return call to 0x00187A40; the detector merged it into its predecessor. Referenced only from data (function table), never called directly."
+ },
+ {
+  "start": "0x001B5150",
+  "note": "Entry after int3 padding that follows a no-return call to 0x00187A40; the detector merged it into its predecessor. Referenced only from data (function table), never called directly."
+ },
+ {
+  "start": "0x001B5490",
+  "note": "Entry after int3 padding that follows a no-return call to 0x00187A40; the detector merged it into its predecessor. Referenced only from data (function table), never called directly."
+ },
+ {
+  "start": "0x001B5760",
+  "note": "Entry after int3 padding that follows a no-return call to 0x00187A40; the detector merged it into its predecessor. Referenced only from data (function table), never called directly."
+ },
+ {
+  "start": "0x001B59F0",
+  "note": "Entry after int3 padding that follows a no-return call to 0x00187A40; the detector merged it into its predecessor. Referenced only from data (function table), never called directly."
+ },
+ {
+  "start": "0x001B5C60",
+  "note": "Entry after int3 padding that follows a no-return call to 0x00187A40; the detector merged it into its predecessor. Referenced only from data (function table), never called directly."
+ },
+ {
+  "start": "0x001B5F10",
+  "note": "Entry after int3 padding that follows a no-return call to 0x00187A40; the detector merged it into its predecessor. Referenced only from data (function table), never called directly."
+ },
+ {
+  "start": "0x001B62E0",
+  "note": "Entry after int3 padding that follows a no-return call to 0x00187A40; the detector merged it into its predecessor. Referenced only from data (function table), never called directly."
+ },
+ {
+  "start": "0x001B6540",
+  "note": "Entry after int3 padding that follows a no-return call to 0x00187A40; the detector merged it into its predecessor. Referenced only from data (function table), never called directly."
+ },
+ {
+  "start": "0x001B67D0",
+  "note": "Entry after int3 padding that follows a no-return call to 0x00187A40; the detector merged it into its predecessor. Referenced only from data (function table), never called directly."
+ },
+ {
+  "start": "0x001B6AB0",
+  "note": "Entry after int3 padding that follows a no-return call to 0x00187A40; the detector merged it into its predecessor. Referenced only from data (function table), never called directly."
+ },
+ {
+  "start": "0x001B6D30",
+  "note": "Entry after int3 padding that follows a no-return call to 0x00187A40; the detector merged it into its predecessor. Referenced only from data (function table), never called directly."
+ },
+ {
+  "start": "0x001B6FF0",
+  "note": "Entry after int3 padding that follows a no-return call to 0x00187A40; the detector merged it into its predecessor. Referenced only from data (function table), never called directly."
+ },
+ {
+  "start": "0x001B7260",
+  "note": "Entry after int3 padding that follows a no-return call to 0x00187A40; the detector merged it into its predecessor. Referenced only from data (function table), never called directly."
+ },
+ {
+  "start": "0x001B75B0",
+  "note": "Entry after int3 padding that follows a no-return call to 0x00187A40; the detector merged it into its predecessor. Referenced only from data (function table), never called directly."
+ },
+ {
+  "start": "0x001B7840",
+  "note": "Entry after int3 padding that follows a no-return call to 0x00187A40; the detector merged it into its predecessor. Referenced only from data (function table), never called directly."
+ },
+ {
+  "start": "0x001B7B10",
+  "note": "Entry after int3 padding that follows a no-return call to 0x00187A40; the detector merged it into its predecessor. Referenced only from data (function table), never called directly."
+ },
+ {
+  "start": "0x001B7E70",
+  "note": "Indirect-call target at the end of the in-engine opening cutscene ([ICALL] Failed to resolve, called from 0x0017F8F0). Entry after int3 padding that follows a no-return call to 0x00187A40; the detector merged it into its predecessor. Referenced only from data (function table), never called directly."
+ },
+ {
+  "start": "0x001B8220",
+  "note": "Entry after int3 padding that follows a no-return call to 0x00187A40; the detector merged it into its predecessor. Referenced only from data (function table), never called directly."
+ },
+ {
+  "start": "0x001B84B0",
+  "note": "Entry after int3 padding that follows a no-return call to 0x00187A40; the detector merged it into its predecessor. Referenced only from data (function table), never called directly."
+ },
+ {
+  "start": "0x001B8790",
+  "note": "Entry after int3 padding that follows a no-return call to 0x00187A40; the detector merged it into its predecessor. Referenced only from data (function table), never called directly."
+ },
+ {
+  "start": "0x001B8A10",
+  "note": "Entry after int3 padding that follows a no-return call to 0x00187A40; the detector merged it into its predecessor. Referenced only from data (function table), never called directly."
+ },
+ {
+  "start": "0x001B8C90",
+  "note": "Entry after int3 padding that follows a no-return call to 0x00187A40; the detector merged it into its predecessor. Referenced only from data (function table), never called directly."
+ },
+ {
+  "start": "0x001B8EF0",
+  "note": "Entry after int3 padding that follows a no-return call to 0x00187A40; the detector merged it into its predecessor. Referenced only from data (function table), never called directly."
+ },
+ {
+  "start": "0x001B91A0",
+  "note": "Entry after int3 padding that follows a no-return call to 0x00187A40; the detector merged it into its predecessor. Referenced only from data (function table), never called directly."
+ },
+ {
+  "start": "0x001B9470",
+  "note": "Entry after int3 padding that follows a no-return call to 0x00187A40; the detector merged it into its predecessor. Referenced only from data (function table), never called directly."
+ },
+ {
+  "start": "0x001B9700",
+  "note": "Entry after int3 padding that follows a no-return call to 0x00187A40; the detector merged it into its predecessor. Referenced only from data (function table), never called directly."
+ },
+ {
+  "start": "0x001B99C0",
+  "note": "Entry after int3 padding that follows a no-return call to 0x00187A40; the detector merged it into its predecessor. Referenced only from data (function table), never called directly."
+ },
+ {
+  "start": "0x001B9C60",
+  "note": "Entry after int3 padding that follows a no-return call to 0x00187A40; the detector merged it into its predecessor. Referenced only from data (function table), never called directly."
+ },
+ {
+  "start": "0x001B9EF0",
+  "note": "Entry after int3 padding that follows a no-return call to 0x00187A40; the detector merged it into its predecessor. Referenced only from data (function table), never called directly."
+ },
+ {
+  "start": "0x001BA190",
+  "note": "Entry after int3 padding that follows a no-return call to 0x00187A40; the detector merged it into its predecessor. Referenced only from data (function table), never called directly."
+ },
+ {
+  "start": "0x001BA420",
+  "note": "Entry after int3 padding that follows a no-return call to 0x00187A40; the detector merged it into its predecessor. Referenced only from data (function table), never called directly."
+ },
+ {
+  "start": "0x001BA6E0",
+  "note": "Entry after int3 padding that follows a no-return call to 0x00187A40; the detector merged it into its predecessor. Referenced only from data (function table), never called directly."
+ },
+ {
+  "start": "0x001BAC90",
+  "note": "Entry after int3 padding that follows a no-return call to 0x00187A40; the detector merged it into its predecessor. Referenced only from data (function table), never called directly."
+ },
+ {
+  "start": "0x001BAF40",
+  "note": "Entry after int3 padding that follows a no-return call to 0x00187A40; the detector merged it into its predecessor. Referenced only from data (function table), never called directly."
+ },
+ {
+  "start": "0x001BB1C0",
+  "note": "Entry after int3 padding that follows a no-return call to 0x00187A40; the detector merged it into its predecessor. Referenced only from data (function table), never called directly."
+ },
+ {
+  "start": "0x001BB800",
+  "note": "Entry after int3 padding that follows a no-return call to 0x00187A40; the detector merged it into its predecessor. Referenced only from data (function table), never called directly."
+ },
+ {
+  "start": "0x001BBB30",
+  "note": "Entry after int3 padding that follows a no-return call to 0x00187A40; the detector merged it into its predecessor. Referenced only from data (function table), never called directly."
+ },
+ {
+  "start": "0x00206820",
+  "note": "Entry after int3 padding that follows a no-return call to 0x00187A40; the detector merged it into its predecessor. Referenced only from data (function table), never called directly."
+ },
+ {
+  "start": "0x00206A60",
+  "note": "Entry after int3 padding that follows a no-return call to 0x00187A40; the detector merged it into its predecessor. Referenced only from data (function table), never called directly."
+ },
+ {
+  "start": "0x00206CA0",
+  "note": "Entry after int3 padding that follows a no-return call to 0x00187A40; the detector merged it into its predecessor. Referenced only from data (function table), never called directly."
+ },
+ {
+  "start": "0x00206EE0",
+  "note": "Entry after int3 padding that follows a no-return call to 0x00187A40; the detector merged it into its predecessor. Referenced only from data (function table), never called directly."
  }
 ]

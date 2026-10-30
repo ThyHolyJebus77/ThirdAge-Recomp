@@ -8,6 +8,7 @@ extracted/
 
 # Generated recompilation and analysis output
 build/
+build.old-tools-path/
 build-file-completion/
 build-frame-clock/
 generated/

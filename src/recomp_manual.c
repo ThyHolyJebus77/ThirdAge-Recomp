@@ -188,6 +188,15 @@ void recomp_icall_fail_log(uint32_t va)
     fprintf(stderr, "[ICALL] Failed to resolve VA 0x%08X (total calls: %llu)\n",
             va, (unsigned long long)g_icall_count);
 
+    fprintf(stderr, "  Calling guest function: 0x%08X\n",
+            (unsigned)g_current_guest_function);
+    /* The call's own frame: return address, then the arguments it pushed. */
+    fprintf(stderr, "  Stack at the call: %08X %08X %08X | %08X %08X %08X %08X %08X\n",
+            (unsigned)MEM32(g_esp), (unsigned)MEM32(g_esp + 4),
+            (unsigned)MEM32(g_esp + 8), (unsigned)MEM32(g_esp + 12),
+            (unsigned)MEM32(g_esp + 16), (unsigned)MEM32(g_esp + 20),
+            (unsigned)MEM32(g_esp + 24), (unsigned)MEM32(g_esp + 28));
+
     /* Dump last 16 call targets from the ring buffer */
     fprintf(stderr, "  Recent ICALL targets:\n");
     for (int i = 0; i < 16; i++) {
